@@ -111,6 +111,8 @@ export class GoogleMapsAPIWrapper {
 
   getZoom(): Promise<number> { return this._map.then((map: mapTypes.GoogleMap) => map.getZoom()); }
 
+  getMapTypeId(): Promise<string> { return this._map.then((map: mapTypes.GoogleMap) => map.getMapTypeId()); }
+
   getBounds(): Promise<mapTypes.LatLngBounds> {
     return this._map.then((map: mapTypes.GoogleMap) => map.getBounds());
   }
@@ -149,5 +151,23 @@ export class GoogleMapsAPIWrapper {
    */
   triggerMapEvent(eventName: string): Promise<void> {
     return this._map.then((m) => google.maps.event.trigger(m, eventName));
+  }
+
+  /*
+  * Geo-coder implementation
+  */
+  getLatLong(address: string) : Observable<any> {
+        let geocoder = new google.maps.Geocoder();
+         return Observable.create(observer => {
+            geocoder.geocode( { 'address': address}, function(results, status) {
+               if (status === google.maps.GeocoderStatus.OK) {
+                    observer.next(results[0].geometry.location);
+                    observer.complete();
+               } else {
+                    observer.next({});
+                    observer.complete();
+                }
+            });
+        });
   }
 }

@@ -310,6 +310,11 @@ export class AgmMap implements OnChanges, OnInit, OnDestroy {
    */
   @Output() mapReady: EventEmitter<any> = new EventEmitter<any>();
 
+  /**
+   * This event is fired when the google map type is changed. e.g. switching satellite to roadmap view
+   */
+  @Output() mapTypeChange: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private _elem: ElementRef, private _mapsWrapper: GoogleMapsAPIWrapper) {}
 
   /** @internal */
@@ -361,6 +366,7 @@ export class AgmMap implements OnChanges, OnInit, OnDestroy {
     this._handleMapMouseEvents();
     this._handleBoundsChange();
     this._handleIdleEvent();
+    this._handleMapTypeChange();
   }
 
   /** @internal */
@@ -475,6 +481,16 @@ export class AgmMap implements OnChanges, OnInit, OnDestroy {
   private _handleIdleEvent() {
     const s = this._mapsWrapper.subscribeToMapEvent<void>('idle').subscribe(
         () => { this.idle.emit(void 0); });
+    this._observableSubscriptions.push(s);
+  }
+
+  private _handleMapTypeChange() {
+    const s = this._mapsWrapper.subscribeToMapEvent<void>('maptypeid_changed').subscribe(() => {
+      this._mapsWrapper.getMapTypeId().then((maptype: string) => {
+        this.mapTypeId = maptype;
+        this.mapTypeChange.emit(maptype);
+      });
+    });
     this._observableSubscriptions.push(s);
   }
 
