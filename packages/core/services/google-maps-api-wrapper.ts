@@ -156,7 +156,7 @@ export class GoogleMapsAPIWrapper {
   /*
   * Geo-coder implementation
   */
-  getLatLong(address:string) : Observable<any> {
+  getLatLong(address: string): Observable<any> {
         let geocoder = new google.maps.Geocoder();
          return Observable.create(observer => {
             geocoder.geocode( { 'address': address}, function(results: any, status: any) {
