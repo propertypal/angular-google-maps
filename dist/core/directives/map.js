@@ -381,7 +381,7 @@ AgmMap.decorators = [
                     '[class.sebm-google-map-container]': 'true'
                 },
                 styles: ["\n    .agm-map-container-inner {\n      width: inherit;\n      height: inherit;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "],
-                template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+                template: "\n    <div class=\"map-container\">\n      <ng-content></ng-content>\n      <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    </div>\n  "
             },] },
 ];
 /** @nocollapse */
