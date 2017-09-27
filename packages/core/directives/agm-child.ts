@@ -4,7 +4,7 @@ import { GoogleMapsAPIWrapper } from './../services/google-maps-api-wrapper';
 @Directive({
   selector: 'agm-child'
 })
-export class AgmChildComponent implements OnInit {
+export class AgmChild implements OnInit {
   @Output() onMapLoad: EventEmitter<{}> = new EventEmitter<{}>();
 
   constructor(public gMaps: GoogleMapsAPIWrapper) {}

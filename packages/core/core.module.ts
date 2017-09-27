@@ -1,6 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {AgmMap} from './directives/map';
 import {AgmCircle} from './directives/circle';
+import {AgmChild} from './directives/agm-child';
 import {AgmInfoWindow} from './directives/info-window';
 import {AgmMarker} from './directives/marker';
 import {AgmPolygon} from './directives/polygon';
