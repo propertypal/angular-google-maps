@@ -1,7 +1,6 @@
 import { Directive, EventEmitter, OnInit, Output } from '@angular/core';
 import { GoogleMapsAPIWrapper } from './../services/google-maps-api-wrapper';
 
-
 @Directive({
   selector: 'agm-child'
 })
