@@ -57,9 +57,9 @@ import {DataLayerManager} from './../services/managers/data-layer-manager';
     }
   `],
   template: `
-    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>
-    <div class='agm-map-content'>
+    <div class="map-container">
       <ng-content></ng-content>
+      <div class='agm-map-container-inner sebm-google-map-container-inner'></div>
     </div>
   `
 })
